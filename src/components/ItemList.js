@@ -1,6 +1,12 @@
 import { IMG_ID } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = ({ items }) => {
+  const dispach = useDispatch();
+  const handleadditem = (item) => {
+    dispach(addItem(item));
+  };
   return (
     <div>
       {items.map((item) => (
@@ -32,7 +38,10 @@ const ItemList = ({ items }) => {
             {item.card.info.description}
           </p>
           <div className="flex justify-end">
-            <button className="p-2 bg-white shadow-md border border-gray-300 rounded-lg cursor-pointer transition duration-300 hover:bg-gray-100">
+            <button
+              className="p-2 bg-white shadow-md border border-gray-300 rounded-lg cursor-pointer transition duration-300 hover:bg-gray-100"
+              onClick={() => handleadditem(item)}
+            >
               ADD +
             </button>
           </div>
